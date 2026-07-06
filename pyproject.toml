@@ -1,7 +1,7 @@
 [project]
-name = "environnement-desu26-a-installer"*
+name = "environnement-desu26-a-installer"
 version = "0.1.0"
-descritption "Environnement à installer pour le DESU data science 2026"
+descritption = "Environnement à installer pour le DESU data science 2026"
 
 dependencies = [
     "numpy>=2.0",
