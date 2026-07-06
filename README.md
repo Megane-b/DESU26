@@ -140,18 +140,111 @@ pip install .
 
 Cette étape est uniquement nécessaire lors de la création initiale du projet.
 
+Un dépôt Git permet de :
+- sauvegarder l’historique du projet
+- travailler en collaboration
+- synchroniser le code avec GitHub
 
-### 1. Initialiser Git et faire le premier commit
+Dans ce projet, on retrouve notamment :
+- les notebooks et scripts du DESU
+- un fichier `pyproject.toml` (environnement Python)
+- un fichier `.gitignore` (fichiers à exclure de Git)
+
+---
+
+### 8.1 Initialiser un dépôt Git
+
+Créer un dépôt Git local dans le dossier du projet :
 
 ```bash
 git init
+```
+
+---
+
+Ajouter tous les fichiers du projet :
+
+```bash
 git add .
+```
+
+---
+
+Créer un premier enregistrement (commit) :
+
+```bash
 git commit -m "Initial commit"
 ```
 
 ---
 
-### 2. Installer GitHub CLI (si nécessaire)
+### 8.2 Exemple de fichier `.gitignore`
+
+Créer un fichier nommé `.gitignore` :
+
+```bash
+touch .gitignore
+```
+
+Contenu du fichier :
+
+```text
+# Environnement virtuel
+env_desu/
+
+# Fichiers Python temporaires
+__pycache__/
+*.pyc
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# VS Code
+.vscode/
+```
+
+ Ce fichier empêche d’envoyer des fichiers inutiles sur GitHub.
+
+---
+
+### 8.3 Exemple de fichier `pyproject.toml`
+
+Créer un fichier nommé :
+
+```bash
+touch pyproject.toml
+```
+
+Contenu minimal :
+
+```toml
+[project]
+name = "desu26-environment"
+version = "0.1.0"
+description = "Environnement Python du DESU Data Science 2026"
+requires-python = ">=3.11"
+
+dependencies = [
+    "numpy",
+    "pandas",
+    "matplotlib",
+    "scipy",
+    "scikit-learn",
+    "jupyterlab"
+]
+```
+
+ Ce fichier permet d’installer toutes les dépendances avec :
+
+```bash
+pip install .
+```
+
+---
+
+### 8.4 Installer GitHub CLI (si nécessaire)
+
+GitHub CLI permet de créer et gérer le dépôt directement depuis le terminal.
 
 ```bash
 sudo apt install gh
@@ -159,7 +252,7 @@ sudo apt install gh
 
 ---
 
-### 3. Se connecter à GitHub
+### 8.5 Se connecter à GitHub
 
 ```bash
 gh auth login
@@ -172,9 +265,24 @@ Choisir :
 
 ---
 
-### 4. Créer le repository GitHub + push automatique
+### 8.6 Créer le repository GitHub et envoyer le projet
+
+Créer le dépôt GitHub + envoyer le projet automatiquement :
 
 ```bash
+gh repo create DESU26 --public --source=. --remote=origin --push
+```
+
+---
+
+### Résumé du workflow complet
+
+```bash
+git init
+git add .
+git commit -m "Initial commit"
+
+gh auth login
 gh repo create DESU26 --public --source=. --remote=origin --push
 ```
 
@@ -190,3 +298,136 @@ gh api -X PUT repos/Megane-b/DESU26/collaborators/username -f permission=push
 - pull : lecture seule
 - push : modification (recommandé)
 - admin : contrôle total
+
+## 10. Envoyer des modifications sur GitHub (workflow Git)
+
+Lorsque vous modifiez des fichiers (notebooks, scripts, etc.), voici la procédure pour mettre à jour le dépôt GitHub.
+
+### 1. Vérifier les fichiers modifiés
+
+```bash
+git status
+```
+
+---
+
+### 2. Ajouter les fichiers modifiés
+
+Pour ajouter tous les fichiers :
+
+```bash
+git add .
+```
+
+Ou pour un fichier précis :
+
+```bash
+git add nom_du_fichier
+```
+
+---
+
+### 3. Créer un commit
+
+```bash
+git commit -m "Description des modifications"
+```
+
+Exemple :
+
+```bash
+git commit -m "Version n°blabla"
+```
+
+---
+
+### 4. Envoyer sur GitHub
+
+```bash
+git push
+```
+
+---
+
+### 5. Vérification
+
+Après `git push`, les modifications apparaissent sur GitHub dans quelques secondes.
+
+## 11. Utilisation des branches Git
+
+Les branches permettent de travailler sur différentes versions du projet sans modifier la version principale (`main`).
+
+### 11.1 Voir les branches
+
+```bash
+git branch
+```
+
+La branche active est indiquée par `*`.
+
+---
+
+### 11.2 Créer une branche
+
+```bash
+git branch meg
+```
+
+---
+
+### 11.3 Changer de branche
+
+```bash
+git switch meg
+```
+
+---
+
+### 11.4 Créer et changer de branche
+
+```bash
+git switch -c meg
+```
+
+---
+
+### 11.5 Envoyer une branche sur GitHub
+
+```bash
+git push -u origin meg
+```
+
+---
+
+### 11.6 Revenir sur la branche principale
+
+```bash
+git switch main
+```
+
+---
+
+### 11.7 Fusionner une branche dans main
+
+Se placer sur `main` :
+
+```bash
+git switch main
+```
+
+Puis fusionner :
+
+```bash
+git merge meg
+```
+
+---
+
+### Résumé
+
+```bash
+git switch -c meg
+git add .
+git commit -m "MEG"
+git push -u origin meg
+```
