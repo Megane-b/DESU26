@@ -476,3 +476,145 @@ git switch main
 git pull
 ```
 
+## 13. Gestion de l’environnement Python avec `uv`
+
+`uv` est un gestionnaire d’environnement Python moderne, très rapide, qui remplace avantageusement `pip` + `venv` dans certains projets.
+
+Il permet de :
+- créer des environnements Python
+- installer les dépendances très rapidement
+- synchroniser un projet à partir d’un fichier `pyproject.toml`
+- garantir des environnements reproductibles
+
+---
+
+## 13.1 Installation de `uv`
+
+Installer `uv` sur Linux :
+
+```bash
+curl -Ls https://astral.sh/uv/install.sh | sh
+```
+
+Puis redémarrer le terminal ou activer le chemin :
+
+```bash
+source ~/.bashrc
+```
+
+Vérifier l’installation :
+
+```bash
+uv --version
+```
+
+---
+
+## 13.2 Initialiser un environnement avec `uv`
+
+Créer un environnement Python dans le projet :
+
+```bash
+uv venv
+```
+
+Cela crée un dossier `.venv/`.
+
+---
+
+## 13.3 Activer l’environnement
+
+Linux / macOS :
+
+```bash
+source .venv/bin/activate
+```
+
+---
+
+## 13.4 Installer les dépendances avec `uv sync`
+
+La commande principale de `uv` est :
+
+```bash
+uv sync
+```
+
+### À quoi ça sert ?
+
+`uv sync` permet de :
+- lire le fichier `pyproject.toml`
+- installer automatiquement toutes les dépendances
+- garantir que l’environnement correspond exactement au projet
+
+👉 C’est l’équivalent moderne de :
+
+```bash
+pip install .
+```
+
+mais plus rapide et plus fiable.
+
+---
+
+## 13.5 Exemple de `pyproject.toml`
+
+```toml
+[project]
+name = "desu26"
+version = "0.1.0"
+description = "Environnement Python DESU 2026"
+
+dependencies = [
+    "numpy",
+    "pandas",
+    "matplotlib",
+    "scikit-learn"
+]
+```
+
+---
+
+## 13.6 Utilisation complète d’un projet
+
+Après clonage du projet :
+
+```bash
+git clone https://github.com/Megane-b/DESU26.git
+cd DESU26
+```
+
+Créer et synchroniser l’environnement :
+
+```bash
+uv venv
+uv sync
+```
+
+Activer l’environnement :
+
+```bash
+source .venv/bin/activate
+```
+
+---
+
+## 13.7 Pourquoi utiliser `uv` ?
+
+Avantages :
+- très rapide (beaucoup plus que pip)
+- installation déterministe
+- meilleure gestion des dépendances
+- simplifie les environnements pour les étudiants
+- compatible avec `pyproject.toml`
+
+---
+
+## 13.8 Résumé
+
+```bash
+curl -Ls https://astral.sh/uv/install.sh | sh
+uv venv
+source .venv/bin/activate
+uv sync
+```
