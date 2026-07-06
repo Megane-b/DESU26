@@ -1,0 +1,15 @@
+[project]
+name = "environnement-desu26-a-installer"*
+version = "0.1.0"
+descritption "Environnement à installer pour le DESU data science 2026"
+
+dependencies = [
+    "numpy>=2.0",
+    "pandas>=2.2",
+    "matplotlib>=3.9",
+    "scipy>=1.14",
+    "scikit-learn>=1.6",
+    "jupyterlab",
+    "notebook",
+    "ipykernel",
+]
