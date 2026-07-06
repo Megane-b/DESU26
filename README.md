@@ -132,3 +132,61 @@ Si de nouvelles bibliothèques sont ajoutées dans le fichier `pyproject.toml` :
 ```bash
 pip install .
 ```
+
+
+---
+
+## 8. Création du dépôt GitHub (première mise en place)
+
+Cette étape est uniquement nécessaire lors de la création initiale du projet.
+
+
+### 1. Initialiser Git et faire le premier commit
+
+```bash
+git init
+git add .
+git commit -m "Initial commit"
+```
+
+---
+
+### 2. Installer GitHub CLI (si nécessaire)
+
+```bash
+sudo apt install gh
+```
+
+---
+
+### 3. Se connecter à GitHub
+
+```bash
+gh auth login
+```
+
+Choisir :
+- GitHub.com
+- HTTPS
+- login via navigateur
+
+---
+
+### 4. Créer le repository GitHub + push automatique
+
+```bash
+gh repo create DESU26 --public --source=. --remote=origin --push
+```
+
+## 9. Ajouter des collaborateurs
+
+Pour donner accès au dépôt :
+
+```bash
+gh api -X PUT repos/Megane-b/DESU26/collaborators/username -f permission=push
+```
+
+### Permissions possibles
+- pull : lecture seule
+- push : modification (recommandé)
+- admin : contrôle total
