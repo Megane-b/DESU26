@@ -355,69 +355,52 @@ Après `git push`, les modifications apparaissent sur GitHub dans quelques secon
 
 ## 11. Utilisation des branches Git
 
-Les branches permettent de travailler sur différentes versions du projet sans modifier la version principale (`main`).
+Les branches permettent de travailler sur différentes versions du projet sans modifier la branche principale (`main`).
 
-### 11.1 Voir les branches
+---
+
+### 11.1 Gestion des branches
+
+Voir les branches :
 
 ```bash
 git branch
 ```
 
-La branche active est indiquée par `*`.
-
----
-
-### 11.2 Créer une branche
-
-```bash
-git branch meg
-```
-
----
-
-### 11.3 Changer de branche
-
-```bash
-git switch meg
-```
-
----
-
-### 11.4 Créer et changer de branche
+Créer et se placer sur une branche :
 
 ```bash
 git switch -c meg
 ```
 
----
-
-### 11.5 Envoyer une branche sur GitHub
+Changer de branche :
 
 ```bash
+git switch meg
+```
+
+Revenir sur `main` :
+
+```bash
+git switch main
+```
+
+---
+
+### 11.2 Enregistrer et envoyer une branche
+
+```bash
+git add .
+git commit -m "MEG"
 git push -u origin meg
 ```
 
 ---
 
-### 11.6 Revenir sur la branche principale
+### 11.3 Fusionner une branche dans main
 
 ```bash
 git switch main
-```
-
----
-
-### 11.7 Fusionner une branche dans main
-
-Se placer sur `main` :
-
-```bash
-git switch main
-```
-
-Puis fusionner :
-
-```bash
 git merge meg
 ```
 
@@ -431,3 +414,65 @@ git add .
 git commit -m "MEG"
 git push -u origin meg
 ```
+
+---
+
+## 12. Synchronisation et Pull Request
+
+---
+
+### 12.1 Récupérer les modifications
+
+```bash
+git pull
+```
+
+Permet de récupérer les changements du dépôt GitHub.
+
+---
+
+### 12.2 Principe d’une Pull Request
+
+Une Pull Request est une demande de fusion d’une branche vers `master` sur GitHub.
+
+Elle permet de :
+- proposer des modifications
+- faire relire le code
+- valider avant intégration
+
+---
+
+### 12.3 Workflow d’une Pull Request
+
+Créer une branche :
+
+```bash
+git switch -c meg
+```
+
+Modifier puis enregistrer :
+
+```bash
+git add .
+git commit -m "Modification"
+```
+
+Envoyer sur GitHub :
+
+```bash
+git push -u origin meg
+```
+
+Puis ouvrir une Pull Request sur GitHub :
+- base : `main`
+- compare : `meg` (ou `lolo`, `mel`)
+
+---
+
+### 12.4 Après fusion de la Pull Request
+
+```bash
+git switch main
+git pull
+```
+
