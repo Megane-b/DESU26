@@ -1,0 +1,7 @@
+README.md
+pyproject.toml
+environnement_desu26_a_installer.egg-info/PKG-INFO
+environnement_desu26_a_installer.egg-info/SOURCES.txt
+environnement_desu26_a_installer.egg-info/dependency_links.txt
+environnement_desu26_a_installer.egg-info/requires.txt
+environnement_desu26_a_installer.egg-info/top_level.txt
